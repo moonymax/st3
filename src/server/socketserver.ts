@@ -7,7 +7,7 @@ export function getSocket() {
     } else {
         if (!socket) {
 
-            socket = new WebSocket((import.meta.env.PROD ? "wss://" : "ws://") + import.meta.env.VITE_HOST_NAME + ":3001");
+            socket = new WebSocket((import.meta.env.PROD ? "wss://" : "ws://") + import.meta.env.VITE_HOST_NAME + "/ws");
             socket.addEventListener("open", (e: Event) => {
                 console.log("the websocket was opened on the client");
                 socket.addEventListener("message", (e: MessageEvent) => {
