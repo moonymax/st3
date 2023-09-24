@@ -4,6 +4,9 @@ import { storage } from "~/server/auth";
 
 export async function GET({ request }: APIEvent) {
     const token = new URL(request.url).searchParams.get("token");
+    if (!token) {
+        return new Error("No token supplied");
+    }
     const user = await prisma.user.findFirst({
         where: {
             challenge: token
@@ -29,9 +32,10 @@ export async function GET({ request }: APIEvent) {
     }
     const session = await storage.getSession();
     session.set("userId", user.id);
+    const currentsession = await storage.commitSession(session);
     return redirect("/app", {
         headers: {
-            "Set-Cookie": await storage.commitSession(session)
+            "Set-Cookie": currentsession
         }
     });
 }

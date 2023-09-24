@@ -22,7 +22,12 @@ export const storage = createSessionStorage({
         await prisma.session.update({ where: { id }, data: { ...data, expires } });
     },
     async deleteData(id) {
-        await prisma.session.delete({ where: { id } });
+        try {
+
+            await prisma.session.delete({ where: { id } });
+        } catch (e) {
+            console.log(e);
+        }
     },
     async readData(id) {
         return await prisma.session.findFirst({ where: { id } });
@@ -137,9 +142,10 @@ export async function logout(request: Request) {
     const session = await storage.getSession(
         request.headers.get("Cookie")
     );
+    const currentsession = await storage.destroySession(session);
     return redirect("/login", {
         headers: {
-            "Set-Cookie": await storage.destroySession(session)
+            "Set-Cookie": currentsession
         }
     });
 }
