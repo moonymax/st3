@@ -1,23 +1,21 @@
-import { isServer } from "solid-js/web";
+import { Server } from "http";
+import { WebSocketServer } from "ws";
 
-let socket: any;
+let httpserver = new Server();
+let wss = new WebSocketServer({ server: httpserver });
+httpserver.listen(3001);
+
 export function getSocket() {
-    if (isServer) {
-
-    } else {
-        if (!socket) {
-
-            socket = new WebSocket((import.meta.env.PROD ? "wss://" : "ws://") + import.meta.env.VITE_HOST_NAME + "/ws");
-            socket.addEventListener("open", (e: Event) => {
-                console.log("the websocket was opened on the client");
-                socket.addEventListener("message", (e: MessageEvent) => {
-                    console.log("a new message: " + e.data);
-
-                });
-
-            });
-        }
+    console.log("initializing websocket");
+    if (!httpserver) {
+        httpserver = new Server();
     }
-    return socket;
+    if (!wss) {
+        wss = new WebSocketServer({ server: httpserver });
+    }
+    if (!httpserver.listening) {
+        httpserver.listen(3001);
+    }
+    return wss;
 }
 
