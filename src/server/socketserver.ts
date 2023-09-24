@@ -6,7 +6,8 @@ export function getSocket() {
 
     } else {
         if (!socket) {
-            socket = new WebSocket("ws://localhost:3001");
+
+            socket = new WebSocket((import.meta.env.PROD ? "wss://" : "ws://") + import.meta.env.VITE_HOST_NAME + ":3001");
             socket.addEventListener("open", (e: Event) => {
                 console.log("the websocket was opened on the client");
                 socket.addEventListener("message", (e: MessageEvent) => {
