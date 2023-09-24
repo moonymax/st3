@@ -1,7 +1,7 @@
 import nodemailer from "nodemailer";
 import { randomBytes } from "crypto";
 import { createSessionStorage, redirect } from 'solid-start';
-import { prisma } from "../prisma/prisma";
+import { prisma } from "~/../prisma/prisma";
 
 export const storage = createSessionStorage({
     cookie: {

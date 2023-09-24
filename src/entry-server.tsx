@@ -3,7 +3,7 @@ import {
     createHandler,
     renderAsync,
 } from "solid-start/entry-server";
-import { getUserId, storage } from "~/../auth/auth";
+import { getUserId, storage } from "~/server/auth";
 import { redirect } from "solid-start";
 const protectedPaths = ["/app"];
 export default createHandler(
