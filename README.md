@@ -1,30 +1,12 @@
-# SolidStart
+# My SolidStart Starter Template
 
-Everything you need to build a Solid project, powered by [`solid-start`](https://start.solidjs.com);
+This project is my custom ***SolidStart*** starter project. It has a full **Auth** flow complete with email verification.
 
-## Creating a project
+## User Convenience
 
-```bash
-# create a new project in the current directory
-npm init solid@latest
+I am using ***nodemailer*** to send a verification email with a token that can satisfy the challenge created by the server.
+The entire process is password less for user convenience.
 
-# create a new project in my-app
-npm init solid@latest my-app
-```
+## Improvements
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-Solid apps are built with _adapters_, which optimise your project for deployment to different environments.
-
-By default, `npm run build` will generate a Node app that you can run with `npm start`. To use a different adapter, add it to the `devDependencies` in `package.json` and specify in your `vite.config.js`.
+In future **Authentication** will be done using ***Auth.js***.
