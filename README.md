@@ -1,6 +1,6 @@
 # My SolidStart Starter Template
 
-This project is my custom ***SolidStart*** starter project. It has a full **Auth** flow complete with email verification.
+This project is my custom ***SolidStart*** starter project. It has a full **Auth** flow with email based login.
 
 ## User Convenience
 
